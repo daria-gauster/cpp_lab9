@@ -14,44 +14,78 @@ const adapterAuction = new FileSync('public/lib/auction.json');
 var dbAuction = low(adapterAuction);
 var auction = JSON.parse(fs.readFileSync('public/lib/auction.json','utf-8'));
 
-// GET home page
+router.post('http://localhost:4445/user?name=:name([a-zA-Z0-9!@#-_]{1,})&money=:money([a-zA-Z0-9!@#-_]{1,})', function (req, res) {
+    res.render('user',
+        {
+            nickname: req.query.name,
+            money: req.query.money
+        });
+});
+
+router.get('/user', function (req, res) {
+    if (Object.keys(req.query).length === 0) {
+        res.status(400);
+        res.json({message: "Нет данных!"});
+    } else {
+        res.render('user',
+            {
+                nickname: req.query.name,
+                money: req.query.money
+            });
+    }
+});
+
+router.get('/admin', function (req, res) {
+    res.render('admin',
+        {
+            pics: pictures.arr,
+            members: participants.arr,
+            setts: auction.myAuc
+        });
+});
+
+
+/* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Auction' });
+    res.render('index', { title: 'Аукцион картин' });
 });
 
 router.get('/pictures', (req, res, next) => {
-    res.render('pictures', {title: 'Paintings', pictures:pictures.arr});
+    res.render('pictures', {title: 'Список картин', pictures:pictures.arr});
+    // next();
 });
 
 router.get('/auction', (req, res, next) => {
-    res.render('auction', {title: 'Auction', pictures:pictures.arr, auction: auction.myAuc, participants:participants.arr});
+    res.render('auction', {title: 'Аукцион', pictures:pictures.arr, auction: auction.myAuc, participants:participants.arr});
+    // next();
 });
 
 router.get('/participants', (req, res, next) => {
-    res.render('participants', {title: 'Bidders', participants:participants.arr});
+    res.render('participants', {title: 'Список участников', participants:participants.arr});
+    // next();
 });
 
 router.get('/auctionSettings', (req, res, next) => {
-    res.render('auctionSettings', {title: 'Settings', pictures: pictures.arr, auction: auction.myAuc});
-  
+    res.render('auctionSettings', {title: 'Настройки аукциона', pictures: pictures.arr, auction: auction.myAuc});
+    // next();
 });
 
 router.get('/participants/:id([a-zA-Z0-9!@#-_]{1,})',(req,res,next) => {
     const id = req.params.id;
     var participant = participants.arr.find(p => p.id == id);
     if (participant) {
-         res.render('participant', { title: 'Bidder', participant: participant, pictures:pictures.arr});
+        res.render('participant', { title: 'Участник', participant: participant, pictures:pictures.arr});
     }
-  
+    // next()
 });
 
 router.get('/pictures/:id([a-zA-Z0-9!@#-_]{1,})',(req,res,next) => {
     const id = req.params.id;
     var picture = pictures.arr.find(p => p.id == id);
     if (picture) {
-        res.render('picture', { title: 'Painting', picture: picture});
+        res.render('picture', { title: 'Картина', picture: picture});
     }
-   
+    // next()
 });
 
 router.post('/pictures/addNewPicture', (req, res) => {
@@ -62,7 +96,7 @@ router.post('/pictures/addNewPicture', (req, res) => {
         .write();
     pictures.arr.push(req.body);
     res.send({id:req.body.id});
-   
+    //res.render('pictures', {title: 'Список картин', pictures:pictures.arr});
     res.status(200);
 });
 
@@ -154,7 +188,7 @@ router.put('/pictures/renamePicture',(req,res) => {
     }
     if (pictures.arr[index].inAuction == true) {
         pic.inAuction = true;
-        pic.link = pictures.arr[index].link;
+        pic.link = pictures.arr[index].link
         pictures.arr[index] = pic;
         dbPictures.get('arr')
             .find({ id: pic.id})
@@ -162,7 +196,7 @@ router.put('/pictures/renamePicture',(req,res) => {
             .write()
     } else {
         pic.inAuction = false;
-        pic.link = pictures.arr[index].link;
+        pic.link = pictures.arr[index].link
         pictures.arr[index] = pic;
         dbPictures.get('arr')
             .find({ id: pic.id})
@@ -219,6 +253,22 @@ router.put('/auctionSettings/rewrite',(req,res)=> {
     auction.myAuc = auc;
     console.log(auction.myAuc);
     res.status(200);
+});
+
+module.exports = router;
+
+
+router.get('/user', function (req, res) {
+    if (Object.keys(req.query).length === 0) {
+        res.status(400);
+        res.json({message: "Отсутствуют данные пользователя!"});
+    } else {
+        res.render('user',
+            {
+                nickname: req.query.name,
+                money: req.query.money
+            });
+    }
 });
 
 module.exports = router;

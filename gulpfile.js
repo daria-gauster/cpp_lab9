@@ -35,9 +35,7 @@ const views = () => {
 }
 
 gulp.task("copy", gulp.parallel(bin, data, pics,
-    script, styles, views));
+    script, views));
 
 gulp.task("default", gulp.series(clean, "copy"));
 gulp.task("clean", clean);
-
-gulp.task("watch", () =>gulp.watch("public/stylesheets/*.less", styles));

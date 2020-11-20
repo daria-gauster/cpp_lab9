@@ -1,0 +1,11 @@
+{
+  "myAuc": {
+    "dateBegin": "2020-11-20",
+    "timeBegin": "11:11",
+    "timeout": "20",
+    "interval": "20",
+    "pause": "20",
+    "picName": "Starry Night",
+    "id": "auction"
+  }
+}

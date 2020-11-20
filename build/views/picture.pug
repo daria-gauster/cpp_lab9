@@ -1,0 +1,111 @@
+extends layout
+block title
+    | Index page
+block content
+    include ./header
+    div.w3-center.w3-padding-32
+        .w3-container(class='page-wrapper')
+            div.w3-container
+                div(class="cardPic")
+                    h3(align="center") Painting information
+                    img.w3-half.w3-image.w3-right(src=picture["link"] class="indBook")
+                    table#tab
+                        tr
+                            td Title:
+                            td#td1 #{picture["name"]}
+                        tr
+                            td Author:
+                            td#td2 #{picture["author"]}
+                        tr
+                            td Year:
+                            td#td3 #{picture["date"]}
+                        tr
+                            td Description:
+                            td#td4 #{picture["description"]}
+                        if (picture["inAuction"] == true)
+                            tr#tr5
+                                td Up to bidding?
+                                td#td5 Yes
+                            tr#tr6
+                                td Starting price
+                                td#td6 #{picture["beginning_price"]}
+                            tr#tr7
+                                td Lowest bid
+                                td#td7 #{picture["min_step"]}
+                            tr#tr8
+                                td Highest bid
+                                td#td8 #{picture["max_step"]}
+        hr       
+        .w3-container
+            aside(class="modal" id="modalAddPic")
+                header
+                    h3 Add to auction
+                section
+                    form(id="addPicToAuc", action="#", method="put")
+                        table
+                            tr
+                                td Starting price:
+                                td
+                                    input.w3-input.w3-light-grey(type="text" id="changePrice")
+                            tr
+                                td Lowest bid:
+                                td
+                                    input.w3-input.w3-light-grey(type="text" id="changeMin")
+                            tr
+                                td Highest bid:
+                                td
+                                    input.w3-input.w3-light-grey(type="text" id="changeMax")
+              
+                    .w3-bar(class="save")
+                        a.w3-margin-top.w3-left.w3-deep-orange.w3-button(href='#' class="buttons" id="save" form="addPictoAuc") Add
+                    hr
+            aside(class="modal" id="modalChangePic")
+                header
+                    h3 Edit the painting
+                section
+                    form(id="change_pic", action="#", method="post")
+                        table
+                            tr
+                                td Title:
+                                td
+                                    input.w3-input.w3-light-grey(type="text" id="changeName" value= picture["name"])
+                            tr
+                                td Author:
+                                td
+                                    input.w3-input.w3-light-grey(type="text" id="changeAuthor" value= picture["author"])
+                            tr
+                                td Year created:
+                                td
+                                    input.w3-input.w3-light-grey(type="text" id="changeYear" value= picture["date"])
+                            tr
+                                td Description:
+                                td
+                                    input.w3-input.w3-light-grey(type="text" id="changeDes" value= picture["description"])
+                                if (picture["inAuction"] == true)
+                                    tr
+                                        td Starting price:
+                                        td
+                                            input.w3-input.w3-light-grey(type="text" id="changePrice_" value= picture["beginning_price"])
+                                    tr
+                                        td Lowest bid:
+                                        td
+                                            input.w3-input.w3-light-grey(type="text" id="changeMin_" value= picture["min_step"])
+                                    tr
+                                        td Highest bid:
+                                        td
+                                            input.w3-input.w3-light-grey(type="text" id="changeMax_" value= picture["max_step"])
+                   
+                .w3-bar(class="save")
+                        a.w3-margin-top.w3-left.w3-deep-orange.w3-button(href='#' class="buttons" id="__save" form="change_pic") Save
+                
+                section
+                    form(id="removePicFromAuc", action="#", method="delete")
+                    div(class="save")
+                        a.w3-bar-item.w3-margin-top.w3-right.w3-deep-orange.w3-button(href='#' class="buttons" id="removePicButton" form="modalRemovePic") Remove painting from bidding
+                section
+                    form(id="delete_pic", action="#", method="delete")
+                    div(class="save")
+                        a.w3-bar-item.w3-margin-top.w3-right.w3-deep-orange.w3-button(href='#' class="buttons" id="modalDelete" form="delete_pic") Remove the painting
+                    
+            script
+                include ../public/javascripts/picture.js

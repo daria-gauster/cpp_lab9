@@ -1,0 +1,313 @@
+@backgroundColor: #F3F7F7;
+@mainTextColor: #222222;
+@backgroundTableColor: #ADC0CE;
+@TitleTextColor: #ffffff;
+@firstChildBackgroundTableColor: #F3F7F7;
+@secondChildBackgroundTableColor: #e6e6e6;
+@hoverBackgroundTableColor: #ADC0CE;
+@menuBackgroundColor:#D6E5E5;
+@menuTextColor:#606060;
+@menuHoverBackgroundColor: #A4A4EA;
+@menuActiveBackgroundColor: #ADC0FF;
+@Georgia: Georgia, serif;
+
+.fooFloatPadding(@x:right, @y:10px) {
+  float: @x;
+  padding: @y;
+}
+html, body {
+  height: 100%;
+}
+
+* {
+  margin:0; /*отступ*/
+}
+
+body {
+  background: @backgroundColor;
+  color: @mainTextColor;
+  font-family:@Georgia;
+  display: flex;
+  flex-direction: column;
+  /*width: calc(100% - 100px);*/
+}
+
+.content, .header, .footer {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.footer {
+  left: 0; bottom: 0;
+  padding: 20px;
+  font-family: @Georgia;
+  p {
+    margin: 10px 0;
+    font-family: @Georgia;
+    font-size: 15px;
+  }
+  a {
+    color: @menuTextColor;
+  }
+}
+
+.header, .footer {
+  background: @menuBackgroundColor;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  p {
+    margin: 10px 0;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+}
+
+
+.content table {
+  width: 100%;
+  text-align: center;
+  border-radius: 6px;
+  border-collapse: separate;
+  border-spacing: 0px;
+  padding: 10px;
+  thead tr {
+    color: @TitleTextColor;
+    font-weight: bold;
+    background: @backgroundTableColor;
+    padding: 10px;
+  }
+  tr {
+    td {
+      border-right: 1px solid #dfdfdf;
+      padding: 10px;
+      a {
+        text-decoration: none;
+        color: #000000;
+      }
+    }
+    td:last-child {
+      border-right: 0px;
+    }
+    th {
+      border-right: 1px solid #dfdfdf;
+      padding: 10px;
+    }
+    th:last-child {
+      border-right: 0px;
+    }
+  }
+  tbody {
+      tr:nth-child(1n) {
+      background: @backgroundColor;
+    }
+      tr:hover {
+      background: @hoverBackgroundTableColor;
+      transition-duration: 0.6s;
+    }
+  }
+}
+
+.content .m_table tbody tr:nth-child(2n) {
+  background: @secondChildBackgroundTableColor;
+}
+
+.content .m_table tbody tr:hover {
+  background: @hoverBackgroundTableColor;
+  transition-duration: 0.6s;
+}
+
+.menu {
+  nav {
+    display: block;
+    width: 660px;
+    margin: 0 auto 30px;
+  }
+  ul {
+    list-style: none;
+    margin: 0 auto;
+    background: @menuBackgroundColor;
+    overflow: hidden;
+    padding: 0;
+  }
+  li {
+    float: left;
+  }
+  a,button {
+    text-decoration: none;
+    display: block;
+    font-family: @Georgia;
+    transition: .5s linear;
+    padding: 1em;
+    border-right: 1px solid @backgroundTableColor;
+    background: rgba(173, 192, 206, .3);
+    color: @menuTextColor;
+  }
+  a:hover {background: @backgroundTableColor;}
+  a:active {background: @backgroundTableColor;}
+  button:hover {background: @backgroundTableColor;}
+  button:active {background: @backgroundTableColor;}
+}
+
+.modal {
+  background: @backgroundColor;
+  left: 50%;
+  margin: -250px 0 0 -23%;
+  position: absolute;
+  top: -50%;
+  width:40%;
+  border-radius: 5px;
+  box-shadow: 0 3px 7px rgba(0,0,0,.25);
+  -moz-box-shadow: 0 3px 7px rgba(0,0,0,.25);
+  -webkit-box-shadow: 0 3px 7px rgba(0,0,0,.25);
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+/* Активация модального окна в состоянии :target */
+.modal:target {
+  top: 50%;
+  transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+}
+
+.modal header, .modal footer {
+  background:#D6E5E5;
+  border-bottom: 1px solid #e7e7e7;
+  border-radius: 5px 5px 0 0;
+  -moz-border-radius: 5px 5px 0 0;
+  -webkit-border-radius: 5px 5px 0 0;
+}
+.modal footer {
+  height: 40px;
+  border:none;
+  border-top: 1px solid #e7e7e7;
+  border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  -webkit-border-radius: 0 0 5px 5px;
+}
+.modal section, .modal header, .modal footer {
+  padding: 15px;
+  z-index: 200;
+}
+
+input {
+  border-radius: 3px;
+  outline: none;
+  max-width: 180px;
+}
+
+.buttons .add, .filter {
+  .fooFloatPadding();
+}
+
+.buttons .save, .cancel {
+  .fooFloatPadding(left,10px);
+}
+
+.buttons .change, .give, .take, .deleted {
+  .fooFloatPadding(right,20px)
+}
+
+a.buttons {
+  color: #fff; /* цвет текста */
+  text-decoration: none; /* убирать подчёркивание у ссылок */
+  user-select: none; /* убирать выделение текста */
+  background: #ADC0CE; /* фон кнопки */
+  padding: .7em 1.5em; /* отступ от текста */
+  outline: none; /* убирать контур в Mozilla */
+}
+a.buttons:hover { background: @menuHoverBackgroundColor; } /* при наведении курсора мышки */
+a.buttons:active { background: @menuActiveBackgroundColor; } /* при нажатии */
+
+
+img.indBook {
+  //-webkit-transform:scale(0.5); /*Webkit: уменьшаем размер до 0.8*/
+  //-moz-transform:scale(0.5); /*Mozilla: масштабирование*/
+  //-o-transform:scale(0.5); /*Opera: масштабирование*/
+  -webkit-transition-duration: 0.5s; /*Webkit: длительность анимации*/
+  -moz-transition-duration: 0.5s; /*Mozilla: длительность анимации*/
+  -o-transition-duration: 0.5s; /*Opera: длительность анимации*/
+  //opacity: 0.7; /*Начальная прозрачность изображений*/
+  height: 80%;
+  width: 60%;
+}
+
+//img.indBook:hover {
+//  -moz-transform:scale(1.5);
+//  -o-transform:scale(0.7); /*Opera: масштабирование*/
+//  box-shadow:0px 0px 30px gray; /*CSS3 тени: 30px размытая тень вокруг всего изображения*/
+//  -webkit-box-shadow:0px 0px 30px gray; /*Webkit: тени*/
+//  -moz-box-shadow:0px 0px 30px gray; /*Mozilla: тени*/
+//  opacity: 1;
+//}
+
+.right-panel-wrapper {
+  width: 800px;
+}
+
+.mcontent-wrapper {
+  width: calc(100% - 400px);
+  padding: 0 30px;
+}
+
+.page-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content .cardBook {
+  width: 500px;
+  padding: 20px;
+  margin: auto;
+}
+
+.content #admin-panel {
+  padding: 0 40px;
+  margin: 20px;
+}
+
+.block {
+  position:relative;
+  width:40%;
+  padding:1em;
+  margin:2em 10px 4em;
+  background:#fff;
+  -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -webkit-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 15px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.block:before,
+.block:after {
+  content:"";
+  position:absolute;
+  z-index:-2;
+}
+.block p {
+  font-size:16px;
+  font-weight:bold;
+}
+
+.resizableFrame {
+  height: 30%;
+  width: 30%;
+  overflow:hidden;
+  padding-bottom: 20px;
+  padding-right: 20px;
+}
+
+#users {
+  width: 100%; height: 100%;
+  border:3px;
+  font:16px/26px Georgia, Garamond, Serif;
+  overflow-y: scroll;
+  overflow-x: hidden
+}

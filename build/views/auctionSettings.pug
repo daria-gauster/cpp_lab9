@@ -1,0 +1,68 @@
+extends layout
+block title
+    | Index page
+block content
+    include ./header
+    div.w3-container
+        aside(class="modal" id="auction")
+            header
+                h3 Change auction settings
+            section
+                form(id="delete_par_", action="#", method="post")
+                    table
+                        tr
+                            td Starting date:
+                            td
+                                input.w3-input.w3-light-grey(type="date" id="dateBegin" value = auction["dateBegin"])
+                        tr
+                            td Starting time:
+                            td
+                                input.w3-input.w3-light-grey(type="time" id="timeBegin" value = auction["timeBegin"])
+                        tr
+                            td Timeout (mins):
+                            td
+                                input.w3-input.w3-light-grey(type="number" id="timeout" value = auction["timeout"])
+                        tr
+                            td Bidding interval (mins):
+                            td
+                                input.w3-input.w3-light-grey(type="number" id="interval" value = auction["interval"])
+                        tr
+                            td Pause (mins):
+                            td
+                                input.w3-input.w3-light-grey(type="number" id="pause" value = auction["pause"])
+                        tr
+                            td Title:
+                                td
+                                    select.w3-select#addNewPic
+                                        for pic in pictures
+                                            if (pic["inAuction"] == true)
+                                               option #{pic["name"]}
+            footer
+                .w3-bar
+                    a.w3-bar-item.w3-deep-orange.w3-button.w3-margin(class="buttons" id="save" href="#modalSave" form="delete_par") Save
+        div(class='cardBook')
+            h4(align="center") Auction settings
+            table
+                tr
+                    td Starting date:
+                    td#td1 #{auction["dateBegin"]}
+
+                tr
+                    td Starting time:
+                    td#td2 #{auction["timeBegin"]}
+
+                tr
+                    td Timeout (mins):
+                    td#td3 #{auction["timeout"]}
+                tr
+                    td Bidding interval (mins):
+                    td#td4 #{auction["interval"]}
+                tr
+                    td Pause (mins):
+                    td#td5 #{auction["pause"]}
+                tr
+                    td Title:
+                    td#td6 #{auction["picName"]}
+        script
+            include ../public/javascripts/auctionSettings.js
+

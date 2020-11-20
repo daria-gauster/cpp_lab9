@@ -1,0 +1,86 @@
+extends layout
+block content
+    include ./header
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
+    script(src="//ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/jquery-ui.min.js")
+    link(rel="stylesheet", href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/sunny/jquery-ui.css")
+    link(rel="stylesheet" href="/stylesheets/w3.css")
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
+    .w3-container
+        div.w3-container#modal2.w3-modal
+            .content.w3-modal-content.w3-card-4.w3-animate-zoom(style="max-width:600px")
+                header
+                    span(onclick="$('#modal2').css('display', 'none')") &times;
+                    h2.w3-center Paintings in auction
+                table.w3-table-all#pictable
+                    tr
+                        th Title
+                        th Author
+                        th Starting price
+                        th Bought
+                        th Price
+                    - var picsnum = 0;
+                    - for(var i = 0; i < pics.length; i++) {
+                        - if (pics[i].inAuction == true) {
+                            - picsnum++
+                            tr
+                                td= pics[i].name
+                                td= pics[i].author
+                                td= pics[i].beginning_price
+                                td= '-'
+                                td= '-'
+                        - }
+                    - }
+        p#picsnum(hidden)= picsnum
+
+        div#modal3.w3-modal
+            div(style="max-width:600px")
+                table#settstable
+                    tr
+                        th Starting date
+                        td= setts.dateBegin
+                    tr
+                        th Starting time
+                        td= setts.timeBegin
+                    tr
+                        th Timeout
+                        td#timeout= setts.timeout + ' mins'
+                    tr
+                        th Pause
+                        td#researchPause= setts.pause + ' mins'
+                    tr
+                        th Auction duration
+                        td#allTime= setts.interval + ' mins'
+        div#admin-panel.block
+            header
+                h3 Auction administration
+            p#timerLabel
+            p#timer
+            p#timeLabel
+            p#time
+                div.menu
+                    button.w3-margin-top.w3-deep-orange.w3-button#start Start auction
+                hr
+        div#userstable.content.block
+            h4.w3-center Buyers
+            table.w3-table-all#usertable.content
+                tr
+                    th Name
+                    th Money
+                - for(var i = 0; i < members.length; i++) {
+                - if(members[i].auction != "")
+                    tr
+                        td
+                            a(href=`http://localhost:4445/user?` + `name=${members[i].name}&money=${members[i].money}` target='_blank') #{members[i].name}
+                        td= members[i].money
+                - }
+
+        div.menu
+            a(onclick="$('#modal2').css('display', 'block')").w3-display-topright Paintings in auction
+
+        hr
+        div#resizableFrame.resizableFrame.one.block.w3-display-bottomleft
+            p Live chat
+            div#users
+    script(src="/socket.io/socket.io.js")
+    script(src="/javascripts/admin.js")

@@ -1,0 +1,43 @@
+extends layout
+block title
+    | List of books
+block content
+    include header
+    div.w3-container.w3-center.w3-padding-32
+        
+            h3 Add a bidder
+            section
+                form(id="new_participant", action="#", method="POST")
+                    table.w3-table-all
+                        tr
+                            td Name:
+                            td
+                                input.w3-input.w3-light-grey(type="text" id="newParticipantName")
+                        tr
+                            td Card ID:
+                            td
+                                input.w3-input.w3-white(id="newParticipantCard" type="text" )
+                        tr
+                            td Money:
+                            td
+                                input.w3-input.w3-light-grey(id="newParticipantMoney" type="text")
+            footer
+                div.w3-bar
+                       
+                        a.w3-bar-item.w3-deep-orange.w3-button.w3-margin(href='#' class="buttons" id="save" form="new_book") Save
+            div( style="clear: both")
+            table.w3-table-all
+                thead
+                    tr
+                        th(datatype="title_name") Name
+                        th(datatype="title_card") Card ID
+                        th(datatype="title_money") Money
+                tbody#mbody
+                    for participant in participants
+                        tr
+                            td
+                                a(href="/participants/"+participant["id"])=participant["name"]
+                            td #{participant["card"]}
+                            td #{participant["money"]}
+            script
+                include ../public/javascripts/participants.js

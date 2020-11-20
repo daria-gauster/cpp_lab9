@@ -62,6 +62,18 @@
       "money": "5000",
       "auction": "",
       "id": "usrIdDMgV2rpzn"
+    },
+    {
+      "name": "Стасян",
+      "card": "1111111111111111",
+      "money": "10000000",
+      "auction": [
+        {
+          "picture": "Starry Night",
+          "maxPrice": "1"
+        }
+      ],
+      "id": "usrIdTU5K5AWR2"
     }
   ]
 }
