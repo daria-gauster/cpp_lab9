@@ -13,13 +13,8 @@ server.listen(port, ()=>{
 server.on('error', onError);
 server.on('listening', onListening);
 
-//if(process.env.NODE_ENV !== 'test') {
     var pictureInfo = require('../public/lib/pictures');
     var participantsInfo = require('../public/lib/participants');
-//} else {
- //   var pictureInfo = require('../public/lib/template_pictures');
-  //  var participantsInfo = require('../public/lib/template_participants');
-//}
 
 var paintings = [];
 var participants = [];

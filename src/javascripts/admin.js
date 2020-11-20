@@ -1,6 +1,5 @@
 $(document).ready(function() {
     require('../stylesheets/chat.css');
-    //require.context("../images", true, /.*\.(jpg|jpeg|gif|png)$/);
     $("#admin-panel, #img-info-auction, #userstable, #resizableFrame").draggable({
         cursor: "move",
     });

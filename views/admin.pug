@@ -10,7 +10,7 @@ block content
         div.w3-container#modal2.w3-modal
             .content.w3-modal-content.w3-card-4.w3-animate-zoom(style="max-width:600px")
                 header
-                    span(onclick="$('#modal2').css('display', 'none')") &times;
+                    span.w3-margin-top.w3-deep-orange.w3-button(onclick="$('#modal2').css('display', 'none')") &times;
                     h2.w3-center Paintings in auction
                 table.w3-table-all#pictable
                     tr
@@ -76,7 +76,7 @@ block content
                 - }
 
         div.menu
-            a(onclick="$('#modal2').css('display', 'block')").w3-display-topright Paintings in auction
+            a.w3-margin-top.w3-deep-orange.w3-button(onclick="$('#modal2').css('display', 'block')") Paintings in auction
 
         hr
         div#resizableFrame.resizableFrame.one.block.w3-display-bottomleft
