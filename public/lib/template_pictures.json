@@ -1,0 +1,40 @@
+{
+  "arr": [
+    {
+      "id": "6",
+      "name": "Starry Night",
+      "author": "Vincent Van Gogh",
+      "date": "1889",
+      "description": "Depicts the view from the east-facing window of his asylum room at Saint-Rémy-de-Provence",
+      "link": "/images/starryNight.jpg",
+      "inAuction": true,
+      "beginning_price": 1000000,
+      "min_step": 1,
+      "max_step": 600
+    },
+    {
+      "id": "66",
+      "name": "Abduction",
+      "author": "L Caponioco",
+      "date": "2021",
+      "description": "Aliens in the field what will they steal?",
+      "link": "/images/abduction.jpg",
+      "inAuction": true,
+      "beginning_price": 5,
+      "min_step": 1,
+      "max_step": 100
+    },
+    {
+      "id": "666",
+      "name": "Cows",
+      "author": "Andry Warhol",
+      "date": "1967",
+      "description": "4 cows",
+      "link": "/images/awcows.jpg",
+      "inAuction": true,
+      "beginning_price": 5000,
+      "min_step": 1,
+      "max_step": 1000
+    }
+  ]
+}

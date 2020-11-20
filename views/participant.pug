@@ -1,0 +1,73 @@
+extends layout
+block title
+    | Index page
+block content
+    include ./header
+    div.w3-center.w3-padding-32
+        .w3-container
+            div(class="cardPar")
+                h3(align="center") Bidder information
+                br
+                table.w3-table-all
+                    tr
+                        td Name:
+                        td #{participant["name"]}
+                    tr
+                        td Card ID:
+                        td #{participant["card"]}
+                    tr
+                        td Balance:
+                        td#money #{participant["money"]}
+                br
+                if (participant["auction"]!="")
+                    h4(align="center") Wishlist
+                    table.w3-table-all#mtable
+                        thead
+                            tr
+                                th(datatype="title_name") Title
+                                th(datatype="title_author") Highest price
+                        tbody#mbody
+                            for pic in participant["auction"]
+                                tr
+                                for p in pictures
+                                    if(p["name"] == pic["picture"])
+                                        td
+                                            a(href="/pictures/" + p["id"])=p["name"]
+                                        td #{pic["maxPrice"]}
+                br
+                h3 Change balance
+                section
+                    form(id="change_book", action="#", method="post")
+                        table.w3-table-all
+                            tr
+                                td New balance:
+                                td
+                                    input.w3-input.w3-light-grey(type="text" id="changePartMoney")
+                footer
+                    .w3-bar(class="save")
+                        a.w3-margin-top.w3-right.w3-deep-orange.w3-button(href='#' class="buttons" id="__save" form="change_par") Save
+            
+                h3 Add a painting
+                section
+                    form(id="add_pic", action="#", method="put")
+                        table.w3-table-all
+                            tr
+                                td Title
+                                    td
+                                        select.w3-select#addNewPic
+                                            for pic in pictures
+                                                option #{pic["name"]}
+                            tr
+                                td Highest price:
+                                td
+                                    input.w3-input.w3-light-grey(type="text" id="addPartMoney")
+                footer
+                    .w3-bar(class="save")
+                        a.w3-margin-top.w3-right.w3-deep-orange.w3-button(href='#' class="buttons" id="___save" form="add_pic") Save
+                section
+                    form(id="delete_par", action="#", method="post")
+                footer
+                    .w3-container(class="save")
+                        a.w3-margin-top.w3-right.w3-deep-orange.w3-button(href='#' class="buttons" id="modalDelete" form="delete_par") Remove the bidder
+            script
+                include ../public/javascripts/participant.js

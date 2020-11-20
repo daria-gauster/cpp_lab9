@@ -1,0 +1,52 @@
+{
+  "arr": [
+    {
+      "id": "1",
+      "name": "Barack Obama",
+      "card": "324523543",
+      "auction":[
+        {
+          "picture": "6",
+          "maxPrice": 2224644563
+        },
+        {
+          "picture":"222222882",
+          "maxPrice":463264
+        }
+      ],
+      "money": 26466576575745745
+    },
+    {
+      "id": "2",
+      "name": "Obama Jr",
+      "card": "8678987645672456",
+      "auction": [
+        {
+          "picture": "6",
+          "maxPrice": 364643
+        },
+        {
+          "picture":"6",
+          "maxPrice":3677
+        }
+      ],
+      "money": 46785
+    },
+    {
+      "id": "3",
+      "name": "Andrew Warhole",
+      "card": "8678987645672456",
+      "auction": [
+        {
+          "picture": "6",
+          "maxPrice": 100
+        },
+        {
+          "picture": "66",
+          "maxPrice":68568
+        }
+      ],
+      "money": 10685
+    }
+  ]
+}
